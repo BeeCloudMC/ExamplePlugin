@@ -1,0 +1,2 @@
+# ExamplePlugin
+BeeCloud Proxy ExamplePlugin
