@@ -1,9 +1,12 @@
 package net.fap.beecloud.example;
 
 import net.fap.beecloud.Server;
+import net.fap.beecloud.SynapsePlayer;
 import net.fap.beecloud.console.ServerLogger;
 import net.fap.beecloud.plugin.PluginBase;
 import net.fap.beecloud.plugin.PluginCase;
+
+import java.util.HashMap;
 
 /**
  * BeeCloud 实例插件
@@ -14,6 +17,8 @@ import net.fap.beecloud.plugin.PluginCase;
 //插件必须 implements PluginCase 并调用onLoad和onEnable入口方法
 //插件可以 extends PluginBase 并使用相关方法
 public class Main extends PluginBase implements PluginCase {
+
+    private static HashMap<String,Integer> playerMoneyMap = new HashMap<String, Integer>();
 
     /**
      * 当插件被加载时会触发
@@ -52,6 +57,23 @@ public class Main extends PluginBase implements PluginCase {
 
 
     }
+
+    /**
+     * 通信例子
+     * 经济系统
+     * @param playerName 玩家名字
+     * @return 金钱数量
+     */
+    public int getMoney(String playerName)
+    {
+        if (this.getServer().isPlayerOnLine(playerName))
+        {
+            SynapsePlayer player = SynapsePlayer.getPlayer(playerName);
+            return playerMoneyMap.get(player.getName());
+        }
+        return 0;
+    }
+
 
     /**
      * 当插件被开启时会触发

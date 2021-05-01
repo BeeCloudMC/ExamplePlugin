@@ -1,6 +1,6 @@
 package net.fap.beecloud.example;
 
-import net.fap.beecloud.console.ServerLogger;
+import net.fap.beecloud.SynapsePlayer;
 import net.fap.beecloud.event.Event;
 import net.fap.beecloud.event.Listener;
 import net.fap.beecloud.event.player.PlayerJoinEvent;
@@ -16,8 +16,9 @@ public class MyListener implements Listener {
     {
         if (event instanceof PlayerJoinEvent)
         {
-            String player = ((PlayerJoinEvent) event).getPlayer();
-            ServerLogger.info("[ExamplePlugin] 欢迎"+player+"来到服务器");
+            SynapsePlayer player = SynapsePlayer.getPlayer(((PlayerJoinEvent) event).getPlayer());
+            player.sendMessage("§c欢迎来到我们服务器!!!");
+            player.sendTitle("§c生存服务器","§b大区1",2,200,2);
         }
     }
 
